@@ -49,12 +49,17 @@ end
 post '/new' do
 
 	content = params[:content]
+	author = params[:author]
 
+	hh = { 	:author => 'Введите имя',
+			:content => 'Введите текст сообщения'}
 
-	if content.length <= 0
-		@error ='Type text'
+	@error = hh.select {|key,_| params[key] == ""}.values.join(", ")
+
+	if @error != ''
 		return erb :new
 	end
+
 
 	@db.execute 'insert into posts (content, created_date) values (?, datetime())', [content]
 
