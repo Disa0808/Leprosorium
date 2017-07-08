@@ -1,9 +1,11 @@
 <h4>Post details:</h4>
+<br />
+<br />
 <p>
-	<%= @row['Content'] %>
+	<span style="font-size: 150%"><%= @row['Content'] %></span>
 	<br />
 	<br />		
-	Added at: <%= @row['Created_date'] %>
+	<span style="font-size: 75%; color: #999">Added by <%= @row['author'] %> at: <%= @row['Created_date'] %></span>
 </p>
 <br />
 <br />
