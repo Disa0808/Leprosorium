@@ -21,7 +21,8 @@ configure do
 	(
 	    id           INTEGER PRIMARY KEY AUTOINCREMENT,
 	    Created_date DATE,
-	    Content      TEXT
+	    Content      TEXT,
+	    author		 TEXT
 	)'
 
 	@db.execute 'CREATE TABLE IF NOT EXISTS Comments 
@@ -61,7 +62,17 @@ post '/new' do
 	end
 
 
-	@db.execute 'insert into posts (content, created_date) values (?, datetime())', [content]
+	@db.execute 'insert into posts 
+		(
+			content, 
+			created_date, 
+			author
+		) 
+			values 
+		(
+			?, 
+			datetime(),
+			?)', [content, author]
 
 	redirect to '/'
 	
